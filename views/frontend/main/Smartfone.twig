@@ -1,0 +1,25 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block content %}
+    <div class="clear"></div>
+
+
+    <div class="wrap_content">
+        <div class="row">
+            {% for item in product %}
+                <div class="block-1x1 block image-right">
+                    <div class="aboutProduct">
+                        <div class="aboutProductDescription"><a href="#">{{ item.title }}</a></div>
+                        <div class="oldPriceProductDescription">{{ item.old_price }} <span class="rubPrice">руб.</span></div>
+                        <div class="priceProductDescription">{{ item.price }} <span class="rubPrice">руб.</span></div>
+                        <div class="buy" product_id="{{ item.id }}"><a   href="javascript:void(0)">Купить</a></div>
+                        <div class="message"></div>
+                    </div>
+                    <div class="aboutImgProduct"><a href="/product/get/{{ item.id }}"><img src="{{ base_url }}assets/frontend/images/smartfone/{{ item.images }}"></a></div>
+                    <div class="clear"></div>
+                </div>
+            {% endfor %}
+            <div class="clear"></div>
+        </div>
+    </div>
+{% endblock %}

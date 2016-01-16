@@ -1,0 +1,13 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block content %}
+    <div class="clear"></div>
+    <div class="wrap_content">
+        <h2>Адреса магазинов в Приморском крае</h2>
+        <ul class="ul-stores">
+            {% for store in  stores %}
+                <li><div class="number-store">{{ store.id }}</div><div class="address-store">{{ store.address }}</div><div class="address-time">{{ store.time_work }}</div><div class="address-podrobnee"><a href="#">Подробнее</a></div><div class="clear"></div></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

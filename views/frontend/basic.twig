@@ -1,0 +1,17 @@
+{% include 'frontend/_parts/head.twig' %}
+<body>
+{% include 'frontend/_parts/left_right_img.twig' %}
+
+<div id="main">
+    <div class="wrapper">
+        {% include 'frontend/_parts/header.twig' %} <!-- Шапка -->
+        {% include 'frontend/_parts/top_menu.twig' %} <!-- Верхнее меню -->
+        {% block banner %}{% endblock %}
+        {% block adFoxBanner %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% include 'frontend/_parts/footer.twig' %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block content %}
+    <div class="clear"></div>
+        <div class="wrap_content">
+        	<h2>Корзина</h2>
+
+        	<div class="wrapProduct"><div class="nameProduct">Наименование товара</div><div class="countProduct">Количество</div><div class="totalProduct">Сумма</div><div class="clear"></div></div>
+
+				{% if list_products is not empty %}
+					{% for list_product in list_products %}
+						<div class="cartPanel">
+							<div class="cartPanelWrapp">
+								<div class="cartImg"><img src="{{ base_url }}assets/frontend/images/smartfone/{{ list_product.images }}"></div>
+								<div class="cartTitle">{{ list_product.title }}</div>
+								<div class="cartCount">
+									<div arrow_previous="{{ list_product.id }}"  class="arrow_previous"></div>
+										<div class="block_count_cart">{{ list_product.order_count }}</div>
+									<div arr_next="{{ list_product.id }}" class="arrow_next"></div>
+								</div>
+								<div block_price="{{ list_product.id }}" class="cartPrice"><span class="cartPriceSpan1">{{ list_product.order_count * list_product.order_price }}</span><span class="rub">руб.</span></div>
+								<div class="deleteProduct" deleteProduct="{{ list_product.id }}"></div>
+								<div class="clear"></div>
+							</div>
+						</div>
+					{% endfor %}
+					<div class="totalOrderInfo">
+						<div class="totalPrice">Общая сумма: {{ total }}</div><div class="clear"></div>
+						<div class="order"><a href="/cart/ordercomplete">Оформить заказ</a></div><div class="clear"></div><div class="clear"></div>
+					</div>
+					{% else %}
+						<div class="adFox-banner">
+							<div class="adFox-banner-left"><a href="#"></a></div>
+							<div class="adFox-banner-right"></div>
+							<div class="clear"></div>
+						</div>
+				{% endif %}
+
+		</div>
+	</div>
+{% endblock %}
+
+

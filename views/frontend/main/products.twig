@@ -1,0 +1,76 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block content %}
+    <div class="clear"></div>
+        <div class="wrap_content">
+            {% for item in product %}
+                <div class="imgMarka"><img src="{{ base_url }}assets/frontend/images/marka/{{ item.id_mark }}.png"></div><div><h2>{{ item.title }}</h2></div>
+                <div class="clear"></div>
+                <div class="atributOfproduct">
+                    <div class="article">Артикул: {{ item.article }}</div>
+                    <div class="imgStars"><img src="{{ base_url }}assets/frontend/images/stars/{{ item.population }}.png"></div>
+                    <div class="reviews"><a href="#">отзывы</a></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="main-photo">
+                    <img src="{{ base_url }}assets/frontend/images/bigPhoto/{{ item.id }}.jpg">
+                </div>
+                <div class="productDescription">
+                    <div class="price-block">
+                        <div class="price">
+                            <p class="oldPrice1">{{ item.old_price }} <span>руб.</span></p>
+                            <span class="spanPrice1">{{ item.price }}</span><span> руб.</span>
+                            <p class="pointsPrice1">+ {{ item.points }}<span> баллов МТС бонус</span></p>
+                        </div>
+                    </div>
+                    <div id="buyPrice1">Купить</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="delivery">
+                    <div class="deliveryBlock1">
+                        <div class="iconDelivery"></div>
+                        <div class="textDelivery">
+                            <div class="textDeliveryTitle">Доставка — Завтра</div><div class="textDeliveryCheck"></div><div class="clear"></div>
+                            <div class="soSklada">Со склада вашего города Бесплатно</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="deliveryBlock1">
+                        <div class="iconDelivery"></div>
+                        <div class="textDelivery">
+                            <div class="textDeliveryTitle">Самовывоз — Сегодня</div><div class="textDeliveryCheck textDeliveryCheck2"></div>
+                            <div class="soSklada soSklada2">Только в 1 магазине<br/>Бесплатно</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="miniSlider">
+                    <div class="miniSliderHead">Рекомендуемый тарифный план</div>
+                    <ul class="bxsliderRecommendedPlans">
+                        <li><div class="miniSliderImg"><img src="{{ base_url }}assets/frontend/images/mtsplanshet_sm.png"></div>
+                        <div class="miniSliderText">
+                            <div class="miniSliderMts">МТС. Планшет Mini</div>
+                            <div class="">500 Мб бесплатного каждый месяц</div>
+                            <div class="">Для пользователей...</div>
+                        </div>
+                        </li>
+                        <li><div class="miniSliderImg"><img src="{{ base_url }}assets/frontend/images/mtsplanshet_sm.png"></div>
+                        <div class="miniSliderText">
+                            <div class="miniSliderMts">МТС. Планшет</div>
+                            <div class="">Готовое решение для планшетов</div>
+
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+                <div class="clear"></div>
+
+
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
+
+

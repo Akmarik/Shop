@@ -1,0 +1,48 @@
+<div class="top-menu">
+    <nav>
+        <ul>
+            <li class="top-menu-li1"><a href="#">Каталог товаров</a><span class="iconTD"></span>
+                <ul class="ul-drop-down-li1">
+                    <li class="drop-down-li1 inner-drop-down-li"><a href="#">Смартфоны</a><span class="foriconSmart"></span>
+                        <ul class="podmenu-drop-down-li1">
+                            {% for marksOfCategor in marksOfCategory %}
+                                <li class="li-smartfone-podmenu-drop-down" ><a href="/product/smartfone/{{ marksOfCategor.mark }}">{{ marksOfCategor.mark }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="drop-down-li2 inner-drop-down-li"><a href="#">Планшеты</a></li>
+                    <li class="drop-down-li3 inner-drop-down-li"><a href="#">Мобильные телефоны</a></li>
+                    <li class="drop-down-li4 inner-drop-down-li"><a href="#">Модемы и роутеры 3G/4G</a></li>
+                    <li class="drop-down-li5 inner-drop-down-li"><a href="#">Домашний Интернет и TВ</a></li>
+                    <li class="drop-down-li6 inner-drop-down-li"><a href="#">Спутниковое ТВ</a></li>
+                    <li class="drop-down-li7 inner-drop-down-li"><a href="#">MP3 плееры</a></li>
+                    <li class="drop-down-li8 inner-drop-down-li"><a href="#">Автомобильная электроника</a></li>
+                </ul>
+            </li>
+            <li class="top-menu-li2"><a href="#">Тарифы и SIM-карты</a></li>
+
+            <li class="top-menu-li1 top-menu-li2"><a href="#">Специальные предложения</a><span class="iconTD"></span>
+                <ul class="ul-drop-down-li1">
+                    <li class="drop-down-li1 inner-drop-down-li"><a href="#"><span>Только 3 дня! Alcatel One touch Go Play за 7990 руб.</span></a></li>
+                    <li class="drop-down-li2 inner-drop-down-li"><a href="#"><span>Торопитесь! Скидки при заказе на сайте!</span></a></li>
+                    <li class="drop-down-li3 inner-drop-down-li"><a href="#"><span>СИМ карта в подарок при покупке смартфона</span></a></li>
+                    <li class="drop-down-li4 inner-drop-down-li"><a href="#"><span>Тарифный план  МТС Планшет в подарок к планшетам</span></a></li>
+                    <li class="drop-down-li5 inner-drop-down-li"><a href="#"><span>Скидки до 80% на аксессуары</span></a></li>
+                    <li class="drop-down-li6 inner-drop-down-li"><a href="#"><span>До 6 мес музыки от Google Play</span></a></li>
+                    <li class="drop-down-li7 inner-drop-down-li"><a href="#"><span>Планшеты Galaxy TAB S2</span></a></li>
+                    <li class="drop-down-li8 inner-drop-down-li"><a href="#"><span>Карта МТС Деньги</span></a></li>
+                    <li class="drop-down-li9 inner-drop-down-li"><a href="#"><span>Все спецпредложения</span></a></li>
+                </ul>
+            </li>
+            <li class="top-menu-li1 top-menu-li5"><a href="#">Сайт МТС</a><span class="iconTD"></span>
+                <ul class="ul-drop-down-li1">
+                    <li class="drop-down-li1 inner-drop-down-li"><a href="#"><span>Мобильная связь</span></a></li>
+                    <li class="drop-down-li2 inner-drop-down-li"><a href="#"><span>Домашний интернет и ТВ</span></a></li>
+                    <li class="drop-down-li3 inner-drop-down-li"><a href="#"><span>Финансовые услуги и платежи</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+<div class="grey-line"></div>

@@ -1,0 +1,65 @@
+<header class="head">
+    <div class="container-header-nav">
+        <div class="wrapper-container-header-nav">
+            <div class="location">
+                <div class="current-city"><a href="#">Приморский край</a></div>
+                <div class="address-list"><a href="/stores"><span class="icon"></span>Адреса магазинов</a></div>
+                <div class="clear"></div>
+            </div>
+            <nav class="top-level">
+                <ul>
+                    <li class="top-level-li1"><a href="#"><span class="iconT"></span>Статус заказа</a></li>
+                    <li class="top-level-li2">Информация для покупателей<span class="iconTD"></span>
+                        <ul class="drop-down">
+                            <li><a href="#">Способы доставки</a></li>
+                            <li><a href="#">Способы оплаты</a></li>
+                            <li><a href="#">Возврат товара и аннулирование заказа</a></li>
+                            <li><a href="#">Активация iPhone</a></li>
+                            <li><a href="#">Обновление ПО 3G-модема</a></li>
+                            <li><a href="#">Правовая информация</a></li>
+                            <li><a href="#">Порядок оказания услуг связи</a></li>
+                            <li><a href="#">Гарантия и сервисное обслуживание</a></li>
+                            <li><a href="#">Реквизиты</a></li>
+                        </ul></li>
+                    <li class="top-level-li3"> {% if is_logged_in is not empty %}
+                                                        Добро пожаловать <span class="usernameAll">{{ username }} </span>
+                            <ul class="dopMenuUsers">
+                                <li class="li-dopMenuUsers"><a href="#">Личный кабинет</a></li>
+                                <li class="li-dopMenuUsers"><a href="/main/exitFormLogin">Выйти</a></li>
+                            </ul>
+                            {% else %}
+                                <a href="/login">Войти</a>
+                            {% endif %}
+                    </li>
+                </ul>
+            </nav>
+            <div class="clear"></div>
+        </div>
+    </div> <!--Серая полоса в самом верху сайта. Навигация. -->
+    <div class="container-header-bottom">
+        <div class="wrapper-container-header-bottom">
+            <div class="left-conteiner-top">
+                <div class="logo"><a href="/"></a></div>
+                <div class="telephone">
+                    <span>Круглосуточная справочная</span>
+                    <span class="number">8 (800) 250 05 05</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="right-conteiner-top">
+                <div class="search">
+                    <form method="" action="">
+                        <input class="inpSearch" type="text" name="search" placeholder="Поиск по сайту" />
+                        <button class="inpSubmit" type="submit" name="searchSubmit">Найти</button>
+                    </form>
+                </div>
+                <div class="basket">
+                    <div class="icon-basket"><span id="cart_total" class="tCount">{{ cart_total }}</span></div>
+                    <div class="summa"><div class="summa-cart"><a href="/cart">Корзина</a></div></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,51 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block banner %}
+    <div class="banner">
+        <ul class="bxslider">
+            <li><a href="test/"><img src="{{ base_url }}assets/frontend/images/banner/banner1.png" /></a></li>
+            <li><a href="test/"><img src="{{ base_url }}assets/frontend/images/banner/banner2.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner3.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner4.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner5.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner7.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner9.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner10.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner11.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner12.png" /></a></li>
+            <li><a href="#"><img src="{{ base_url }}assets/frontend/images/banner/banner13.png" /></a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block adFoxBanner %}
+<div class="adFox-banner">
+    <div class="adFox-banner-left"><a href="#"></a></div>
+    <div class="adFox-banner-right"></div>
+    <div class="clear"></div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <div class="clear"></div>
+    <div class="wrap_content">
+        <div class="row">
+            {% for item in products %}
+                <div class="block-1x1 block image-right">
+                    <div class="aboutProduct">
+                        <div class="aboutProductDescription"><a href="#">{{ item.title }}</a></div>
+                        <div class="oldPriceProductDescription">{{ item.old_price }} <span class="rubPrice">руб.</span></div>
+                        <div class="priceProductDescription">{{ item.price }} <span class="rubPrice">руб.</span></div>
+                        <div class="buy" id="buy" product_id="{{ item.id }}"><a   href="javascript:void(0)">Купить</a></div>
+                        <div class="message"></div>
+                    </div>
+                    <div class="aboutImgProduct"><a href="product/get/{{ item.id }}"><img src="{{ base_url }}assets/frontend/images/samsung/{{ item.images }}"></a></div>
+                    <div class="clear"></div>
+                </div>
+
+            {% endfor %}
+            <div class="clear"></div>
+        </div>
+    </div>
+{% endblock %}

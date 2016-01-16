@@ -1,0 +1,34 @@
+{% extends 'frontend/basic.twig' %}
+
+
+{% block content %}
+
+    <div class="contact-us-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 contact-form wow fadeInLeft">
+                    <p>
+                        Для связи с нами, заполните форму ниже
+                    </p>
+                    {% if success_send is not empty %}
+                        <div style="color: #273428; background: #bdeabe; border: 1px solid #273428; padding: 10px;">
+                            Ваше письмо успешно отправлено администрации сайта
+                        </div>
+                    {% endif %}
+
+                    {{ form | raw }}
+                </div>
+
+
+                <div class="col-sm-5 contact-address wow fadeInUp">
+                    <h3>Где мы находимся</h3>
+                    <div class="map"></div>
+                    <h3>Адрес</h3>
+                    <p>{{ settings.address }}</p>
+                    <p>Телефон: {{ settings.phone }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
