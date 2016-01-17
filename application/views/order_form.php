@@ -13,8 +13,8 @@
                     'checked'     => TRUE,
                     'style'       => 'margin:10px',
                 );
-
                 echo form_radio($data).' Самовывоз'; ?>
+
                 <?php $data = array(
                     'name'        => 'order_delivery_type',
                     'id'          => 'order_delivery_type_courier',
@@ -22,8 +22,8 @@
                     'checked'     => false,
                     'style'       => 'margin:10px',
                 );
-
                 echo form_radio($data).' Доставка курьером'; ?>
+
             </div>
 
             <div class="wrapOrderPole">
@@ -43,7 +43,7 @@
 
             <div class="wrapOrderPole">
                 <div class="form-group">
-                    <?php echo form_label('Улица*:', 'country'); ?>
+                    <?php echo form_label('Улица*:', 'street'); ?>
                     <?php echo form_input(array(
                         'name' => 'street',
                         'placeholder' => 'Укажите улицу',

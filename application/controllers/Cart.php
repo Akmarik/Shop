@@ -171,17 +171,29 @@ class Cart extends MY_Controller{
 
 
     public function ordercomplete(){
-
             $form_html = $this->renderHTML('order_form', array(), true);
+            $is_logged_in = $this->session->userdata('is_logged_in');
+            $username = $this->session->userdata('username');
             $this->setData('title', 'Оформить заказ');
             $this->setData('order_form', $form_html);
-
+            $this->setData('username', $username);
+            $this->setData('is_logged_in', $is_logged_in);
             $this->display('frontend/main/order_form');
+    }
 
+    public function order_success(){
+        $is_logged_in = $this->session->userdata('is_logged_in');
+        $username = $this->session->userdata('username');
+        $this->setData('title', 'Заказ');
+
+        $this->setData('username', $username);
+        $this->setData('is_logged_in', $is_logged_in);
+        $this->display('frontend/main/order_success');
     }
 
 
     public function order_complete(){
+        $this->load->model('Orders_model');
         // если был пост запрос
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             // подключение библиотеки для валидации форм
@@ -191,77 +203,91 @@ class Cart extends MY_Controller{
 
             $config = array(
                 array(
-                    'field'   => 'firstname',
-                    'label'   => 'Имя',
+                    'field'   => 'country',
+                    'label'   => 'город',
                     'rules'   => 'trim|required|max_length[50]'
                 ),
                 array(
-                    'field'   => 'lastname',
-                    'label'   => 'фамилия',
-                    'rules'   => 'trim|max_length[50]'
+                    'field'   => 'street',
+                    'label'   => 'улица',
+                    'rules'   => 'trim|required|max_length[50]'
                 ),
                 array(
-                    'field'   => 'email_address',
-                    'label'   => 'email',
-                    'rules'   => 'trim|required|valid_email|max_length[50]'
-                ),
-                array(
-                    'field'   => 'password',
-                    'label'   => 'пароль',
-                    'rules'   => 'trim|required|max_length[32]'
-                ),
-                array(
-                    'field'   => 'repeatPassword',
-                    'label'   => 'Подтверждение пароля',
-                    'rules'   => 'trim|required|matches[password]'
+                    'field'   => 'build',
+                    'label'   => 'номер дома',
+                    'rules'   => 'trim|required|max_length[4]'
                 ),
 
                 array(
-                    'field'   => 'phone',
-                    'label'   => 'телефон',
+                    'field'   => 'flat_office',
+                    'label'   => 'Квартира Офис',
                     'rules'   => 'trim|max_length[25]|numeric'
 
                 ),
                 array(
-                    'field'   => 'username',
-                    'label'   => 'username',
-                    'rules'   => 'trim|required|max_length[50]'
+                    'field'   => 'orderTextarea',
+                    'label'   => 'Дополнительно',
+                    'rules'   => 'trim|max_length[50]'
                 )
 
             );
 
             $this->form_validation->set_rules($config);
+            $order_delivery_type = $this->input->post('order_delivery_type');
 
-            // если данные прошли проверку
-            if($this->form_validation->run() == TRUE){
-                // получаем данные из формы
-                $firstname = $this->input->post('firstname');
-                $last_name = $this->input->post('lastname');
-                $email_address = $this->input->post('email_address');
-                $password = $this->input->post('password');
-                $phone = $this->input->post('phone');
-                $username = $this->input->post('username');
-                $reg_date = new DateTime();
+            if($order_delivery_type == '2'){
+                if($this->form_validation->run() == TRUE){
+                    // получаем данные из формы
 
-                // подключаем модель для работы с юзерами
+                    $country = $this->input->post('country');
+                    $street = $this->input->post('street');
+                    $build = $this->input->post('build');
+                    $flat_office = $this->input->post('flat_office');
+                    $orderTextarea = $this->input->post('orderTextarea');
+
+                    $username = $this->session->userdata('username');
+                    $user = $this->Membership_model->getAll(array('username' => $username), 1);
+                    $this->load->library('email');
+
+                    $this->email->from('http://shop.loc/', "Заказ юзера ".$user[0]['username']);
+                    $this->email->to('dm_martych@mail.ru');
+                    $this->email->subject('Заказ shop.loc');
+                    $this->email->message("ТИП ДОСТАВКИ: КУРЬЕР; Город: $country, улица: $street, дом: $build, кваритира-офис: $flat_office, дополнительно: $orderTextarea ");
+                    $this->email->send();
+                    // подключаем модель для работы с юзерами
+                    $this->load->model('Membership_model');
+
+                    $data = array(
+                        'status' => '1'
+                    );
+
+                    $this->db->where('id_user', $user[0]['id']);
+                    $this->db->update('orders', $data);
+
+                    $this->order_success();
+                }else{
+                    $this->ordercomplete();
+                }
+            }else{
+                $username = $this->session->userdata('username');
+                $user = $this->Membership_model->getAll(array('username' => $username), 1);
                 $this->load->model('Membership_model');
 
-                // отправка юзера в БД
-                $result = $this->Membership_model->insert(array(
-                    'first_name' => $firstname,
-                    'last_name' => $last_name,
-                    'username' => $username,
-                    'password' => md5($password),
-                    'email_address' => $email_address,
-                    'phone' => $phone,
-                    'reg_date' => $reg_date->format('Y-m-d')
-                ));
+                $data = array(
+                    'status' => '1'
+                );
 
-                redirect('/success');
-            }else{
-                $this->signup();
+                $this->db->where('id_user', $user[0]['id']);
+                $this->db->update('orders', $data);
+                $this->load->library('email');
+
+                $this->email->from('http://shop.loc/', "Заказ юзера ".$user[0]['username']);
+                $this->email->to('dm_martych@mail.ru');
+                $this->email->subject('Заказ shop.loc');
+                $this->email->message("Самовывоз");
+                $this->email->send();
+                $this->order_success();
             }
-
         }
     }
 
